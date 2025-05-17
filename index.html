@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Giftly India offers gaming gift cards, top-ups, and exclusive coupons for Amazon, Google Play, Flipkart, and more.">
+  <title>Giftly India - Epic Gaming Rewards</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/32?text=G">
+  <style>
+    body { 
+      font-family: 'Orbitron', sans-serif; 
+      background: #0f172a; 
+      color: #10b981; 
+      overflow-anchor: none; 
+    }
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: translateY(20px) scale(0.95); } 
+      to { opacity: 1; transform: translateY(0) scale(1); } 
+    }
+    @keyframes pulseGlow { 
+      0%, 100% { box-shadow: 0 0 12px rgba(16, 185, 129, 0.5); } 
+      50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.7); } 
+    }
+    @keyframes flicker { 
+      0%, 100% { opacity: 1; } 
+      50% { opacity: 0.8; } 
+    }
+    .fade-in { 
+      animation: fadeIn 0.8s ease-out; 
+    }
+    .hover-scale { 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    }
+    .hover-scale:hover { 
+      transform: scale(1.03) rotate(1deg); 
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.5); 
+    }
+    .gradient-bg { 
+      background: linear-gradient(135deg, #1f2937, #064e3b); 
+      position: relative; 
+      overflow: hidden; 
+    }
+    .gradient-bg::before { 
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%); 
+      opacity: 0.3; 
+      animation: flicker 3s infinite ease-in-out; 
+    }
+    .custom-shadow { 
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(16, 185, 129, 0.3); 
+      border: 1px solid rgba(16, 185, 129, 0.2); 
+    }
+    .btn-glow { 
+      transition: background 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; 
+      animation: pulseGlow 2s infinite ease-in-out; 
+      background: #047857; 
+    }
+    .btn-glow:hover { 
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.6); 
+      animation: flicker 0.5s ease-in-out; 
+    }
+    h1, h2, h3 { 
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.7); 
+    }
+    a { 
+      color: #34d399; 
+      cursor: pointer; 
+    }
+    a:hover { 
+      color: #10b981; 
+    }
+    section { 
+      position: relative; 
+      padding: 3rem 1rem; 
+      min-height: 60vh; 
+      scroll-margin-top: 150px; 
+    }
+    .content { 
+      position: relative; 
+      z-index: 1; 
+    }
+    .card-bg { 
+      background: linear-gradient(135deg, #1f2937, #111827); 
+    }
+    i { 
+      color: #34d399; 
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.5); 
+    }
+    nav { 
+      pointer-events: auto; 
+      z-index: 60; 
+    }
+    header { 
+      z-index: 50; 
+    }
+    .debug-highlight { 
+      border: 2px solid red; 
+      transition: border 0.5s; 
+    }
+    @media (max-width: 768px) {
+      section { 
+        min-height: auto; 
+        padding: 2rem 1rem; 
+        scroll-margin-top: 80px; 
+      }
+      h2 { 
+        font-size: 1.8rem; 
+      }
+      p { 
+        font-size: 0.9rem; 
+      }
+      .grid-cols-3 { 
+        grid-template-columns: 1fr; 
+      }
+      nav { 
+        flex-wrap: wrap; 
+        gap: 0.5rem; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="gradient-bg p-6 sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl md:text-3xl font-bold">Giftly India</h1>
+      <nav class="flex space-x-4 md:space-x-6">
+        <a href="#home" data-nav="home" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Home">Home</a>
+        <a href="#gift-cards" data-nav="gift-cards" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Gift Cards">Gift Cards</a>
+        <a href="#top-ups" data-nav="top-ups" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Top-Ups">Top-Ups</a>
+        <a href="#coupons" data-nav="coupons" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Coupons">Coupons</a>
+        <a href="#contact" data-nav="contact" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="gradient-bg text-center py-20">
+    <div class="container mx-auto content fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Epic Rewards at Giftly India</h2>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto">Unlock gaming gift cards, top-ups, and exclusive coupons!</p>
+    </div>
+  </section>
+
+  <section id="gift-cards" class="py-20">
+    <div class="container mx-auto px-4 content">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 fade-in">Gift Cards</h2>
+      <p class="text-center mb-4">Available Gift Cards: Amazon, Google Play, Flipkart, and more. Email <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a> to purchase.</p>
+      <p class="text-center mb-8 text-red-500 font-semibold"><strong>No Refund Policy:</strong> All gift card purchases are final and non-refundable.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Amazon Gift Card</h3>
+          <p class="mb-4">Shop anything on Amazon.</p>
+          <p class="mb-4"><s class="text-gray-600">₹500</s> <strong class="text-green-400">New Offer: ₹100</strong></p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Amazon Gift Card">Get Now</a>
+        </div>
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Google Play Gift Card</h3>
+          <p class="mb-4">Apps, games, and more.</p>
+          <p class="mb-4"><s class="text-gray-600">₹500</s> <strong class="text-green-400">New Offer: ₹100</strong></p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Google Play Gift Card">Get Now</a>
+        </div>
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Flipkart Gift Card</h3>
+          <p class="mb-4">Shop electronics, fashion, and more.</p>
+          <p class="mb-4"><s class="text-gray-600">₹500</s> <strong class="text-green-400">New Offer: ₹100</strong></p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Flipkart Gift Card">Get Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="top-ups" class="py-20 gradient-bg">
+    <div class="container mx-auto px-4 content">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 fade-in">Gaming Top-Ups</h2>
+      <p class="text-center mb-4">Available Top-Ups: BGMI UC, Free Fire Diamonds, Valorant Points, and more. Email <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a> to purchase.</p>
+      <p class="text-center mb-8 text-red-500 font-semibold"><strong>No Refund Policy:</strong> All top-up purchases are final and non-refundable.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">BGMI UC</h3>
+          <p class="mb-4">Get exclusive skins and items.</p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase BGMI UC">Get Now</a>
+        </div>
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Free Fire Diamonds</h3>
+          <p class="mb-4">Dominate the battlefield.</p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Free Fire Diamonds">Get Now</a>
+        </div>
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Valorant Points</h3>
+          <p class="mb-4">Customize your gameplay.</p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Valorant Points">Get Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coupons" class="py-20">
+    <div class="container mx-auto px-4 content">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 fade-in">Exclusive Coupons</h2>
+      <p class="text-center mb-4">Available Coupons: 25% Off on Noise Products, 20% Off on Razer Accessories, and more. Email <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a> to redeem.</p>
+      <p class="text-center mb-8 text-red-500 font-semibold"><strong>No Refund Policy:</strong> All coupon purchases are final and non-refundable.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">25% Off on Noise Products</h3>
+          <p class="mb-4">Save big on premium audio gear.</p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Redeem 25% Off on Noise Products">Get Now</a>
+        </div>
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">20% Off on Razer Accessories</h3>
+          <p class="mb-4">Upgrade your gaming setup.</p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Redeem 20% Off on Razer Accessories">Get Now</a>
+        </div>
+        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">15% Off on Logitech G Series</h3>
+          <p class="mb-4">High-performance gaming gear.</p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Redeem 15% Off on Logitech G Series">Get Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20">
+    <div class="container mx-auto px-4 content">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 fade-in">Get in Touch</h2>
+      <p class="text-lg mb-8 text-center">Reach out for support or inquiries!</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="fade-in">
+          <i class="fas fa-envelope text-green-400 text-3xl mb-4"></i>
+          <p class="mb-4"><a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a></p>
+          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Email Giftly India">Email Us</a>
+        </div>
+        <div class="fade-in">
+          <i class="fab fa-telegram text-green-400 text-3xl mb-4"></i>
+          <p class="mb-4"><a href="https://t.me/GiftlyIndia" class="hover:underline">t.me/GiftlyIndia</a></p>
+          <a href="https://t.me/GiftlyIndia" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Join Giftly India on Telegram">Join Telegram</a>
+        </div>
+        <div class="fade-in">
+          <i class="fab fa-instagram text-green-400 text-3xl mb-4"></i>
+          <p class="mb-4"><a href="https://www.instagram.com/klaassyedits?igsh=MTJxbmxwMWpnZnBiMA==" class="hover:underline">@klaassyedits</a></p>
+          <a href="https://www.instagram.com/klaassyedits?igsh=MTJxbmxwMWpnZnBiMA==" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Follow Giftly India on Instagram">Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="gradient-bg py-8">
+    <div class="container mx-auto text-center content">
+      <p>© 2025 Giftly India. All rights reserved.</p>
+      <div class="flex justify-center space-x-4 mt-4">
+        <a href="#contact" data-nav="contact" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Contact">Contact</a>
+        <a href="#gift-cards" data-nav="gift-cards" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Gift Cards">Gift Cards</a>
+        <a href="#top-ups" data-nav="top-ups" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Top-Ups">Top-Ups</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      console.log('Page and assets fully loaded. Initializing nav script.');
+      try {
+        const navLinks = document.querySelectorAll('a[data-nav]');
+        console.log(`Found ${navLinks.length} nav links.`);
+        navLinks.forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = anchor.getAttribute('href');
+            console.log(`Nav link clicked: ${targetId}`);
+            try {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight || 150;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerHeight;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+                console.log(`Scrolling to ${targetId} at position ${offsetPosition}`);
+                targetElement.classList.add('debug-highlight');
+                setTimeout(() => targetElement.classList.remove('debug-highlight'), 2000);
+              } else {
+                console.error(`Target element ${targetId} not found in DOM`);
+              }
+            } catch (err) {
+              console.error(`Error scrolling to ${targetId}: ${err.message}`);
+            }
+          });
+        });
+      } catch (err) {
+        console.error(`Nav initialization failed: ${err.message}`);
+      }
+    });
+  </script>
+</body>
+</html>
