@@ -1,361 +1,1120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Giftly India offers gaming gift cards, top-ups, and exclusive coupons for Amazon, Google Play, Flipkart, and more.">
-  <title>Giftly India - Epic Gaming Rewards</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="https://via.placeholder.com/32?text=G">
-  <style>
-    body { 
-      font-family: 'Orbitron', sans-serif; 
-      background: #0f172a; 
-      color: #10b981; 
-      overflow-anchor: none; 
-    }
-    @keyframes fadeIn { 
-      from { opacity: 0; transform: translateY(20px) scale(0.95); } 
-      to { opacity: 1; transform: translateY(0) scale(1); } 
-    }
-    @keyframes pulseGlow { 
-      0%, 100% { box-shadow: 0 0 12px rgba(16, 185, 129, 0.5); } 
-      50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.7); } 
-    }
-    @keyframes flicker { 
-      0%, 100% { opacity: 1; } 
-      50% { opacity: 0.8; } 
-    }
-    .fade-in { 
-      animation: fadeIn 0.8s ease-out; 
-    }
-    .hover-scale { 
-      transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    }
-    .hover-scale:hover { 
-      transform: scale(1.03) rotate(1deg); 
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.5); 
-    }
-    .gradient-bg { 
-      background: linear-gradient(135deg, #1f2937, #064e3b); 
-      position: relative; 
-      overflow: hidden; 
-    }
-    .gradient-bg::before { 
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%); 
-      opacity: 0.3; 
-      animation: flicker 3s infinite ease-in-out; 
-    }
-    .custom-shadow { 
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(16, 185, 129, 0.3); 
-      border: 1px solid rgba(16, 185, 129, 0.2); 
-    }
-    .btn-glow { 
-      transition: background 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; 
-      animation: pulseGlow 2s infinite ease-in-out; 
-      background: #047857; 
-    }
-    .btn-glow:hover { 
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.6); 
-      animation: flicker 0.5s ease-in-out; 
-    }
-    h1, h2, h3 { 
-      text-shadow: 0 0 10px rgba(16, 185, 129, 0.7); 
-    }
-    a { 
-      color: #34d399; 
-      cursor: pointer; 
-    }
-    a:hover { 
-      color: #10b981; 
-    }
-    section { 
-      position: relative; 
-      padding: 3rem 1rem; 
-      min-height: 60vh; 
-      scroll-margin-top: 150px; 
-    }
-    .content { 
-      position: relative; 
-      z-index: 1; 
-    }
-    .card-bg { 
-      background: linear-gradient(135deg, #1f2937, #111827); 
-    }
-    i { 
-      color: #34d399; 
-      text-shadow: 0 0 8px rgba(16, 185, 129, 0.5); 
-    }
-    nav { 
-      pointer-events: auto; 
-      z-index: 60; 
-    }
-    header { 
-      z-index: 50; 
-    }
-    .debug-highlight { 
-      border: 2px solid red; 
-      transition: border 0.5s; 
-    }
-    .modal { 
-      display: none; 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
-      background: rgba(0, 0, 0, 0.8); 
-      z-index: 100; 
-      justify-content: center; 
-      align-items: center; 
-    }
-    .modal-content { 
-      background: linear-gradient(135deg, #1f2937, #111827); 
-      padding: 2rem; 
-      border-radius: 1rem; 
-      text-align: center; 
-      max-width: 90%; 
-      width: 500px; 
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.8); 
-      animation: fadeIn 0.5s ease-out; 
-    }
-    .version-glow {
-      animation: pulseGlow 2s infinite ease-in-out;
-      display: inline-block;
-    }
-    @media (max-width: 768px) {
-      section { 
-        min-height: auto; 
-        padding: 2rem 1rem; 
-        scroll-margin-top: 80px; 
-      }
-      h2 { 
-        font-size: 1.8rem; 
-      }
-      p { 
-        font-size: 0.9rem; 
-      }
-      .grid-cols-3 { 
-        grid-template-columns: 1fr; 
-      }
-      nav { 
-        flex-wrap: wrap; 
-        gap: 0.5rem; 
-      }
-      .modal-content { 
-        width: 90%; 
-        padding: 1.5rem; 
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Disclaimer Modal -->
-  <div id="disclaimerModal" class="modal">
-    <div class="modal-content">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4">Exciting News!</h2>
-      <p class="text-lg mb-6">Version 1.1 with a new Summer Update is coming soon!</p>
-      <button id="closeModal" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Close Disclaimer">Got It!</button>
-    </div>
-  </div>
-
-  <header class="gradient-bg p-6 sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl md:text-3xl font-bold">Giftly India</h1>
-      <nav class="flex space-x-4 md:space-x-6">
-        <a href="#home" data-nav="home" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Home">Home</a>
-        <a href="#gift-cards" data-nav="gift-cards" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Gift Cards">Gift Cards</a>
-        <a href="#top-ups" data-nav="top-ups" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Top-Ups">Top-Ups</a>
-        <a href="#coupons" data-nav="coupons" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Coupons">Coupons</a>
-        <a href="#contact" data-nav="contact" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <section id="home" class="gradient-bg text-center py-20">
-    <div class="container mx-auto content fade-in">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">Epic Rewards at Giftly India</h2>
-      <p class="text-lg md:text-xl max-w-2xl mx-auto">Unlock gaming gift cards, top-ups, and exclusive coupons!</p>
-    </div>
-  </section>
-
-  <section id="gift-cards" class="py-20">
-    <div class="container mx-auto px-4 content">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 fade-in">Gift Cards</h2>
-      <p class="text-center mb-4">Available Gift Cards: Amazon, Google Play, Flipkart, and more. Email <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a> to purchase.</p>
-      <p class="text-center mb-8 text-red-500 font-semibold"><strong>No Refund Policy:</strong> All gift card purchases are final and non-refundable.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">Amazon Gift Card</h3>
-          <p class="mb-4">Shop anything on Amazon.</p>
-          <p class="mb-4"><s class="text-gray-600">₹500</s> <strong class="text-green-400">New Offer: ₹100</strong></p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Amazon Gift Card">Get Now</a>
-        </div>
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">Google Play Gift Card</h3>
-          <p class="mb-4">Apps, games, and more.</p>
-          <p class="mb-4"><s class="text-gray-600">₹500</s> <strong class="text-green-400">New Offer: ₹100</strong></p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Google Play Gift Card">Get Now</a>
-        </div>
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">Flipkart Gift Card</h3>
-          <p class="mb-4">Shop electronics, fashion, and more.</p>
-          <p class="mb-4"><s class="text-gray-600">₹500</s> <strong class="text-green-400">New Offer: ₹100</strong></p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Flipkart Gift Card">Get Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="top-ups" class="py-20 gradient-bg">
-    <div class="container mx-auto px-4 content">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 fade-in">Gaming Top-Ups</h2>
-      <p class="text-center mb-4">Available Top-Ups: BGMI UC, Free Fire Diamonds, Valorant Points, and more. Email <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a> to purchase.</p>
-      <p class="text-center mb-8 text-red-500 font-semibold"><strong>No Refund Policy:</strong> All top-up purchases are final and non-refundable.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">BGMI UC</h3>
-          <p class="mb-4">Get exclusive skins and items.</p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase BGMI UC">Get Now</a>
-        </div>
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">Free Fire Diamonds</h3>
-          <p class="mb-4">Dominate the battlefield.</p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Free Fire Diamonds">Get Now</a>
-        </div>
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">Valorant Points</h3>
-          <p class="mb-4">Customize your gameplay.</p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Purchase Valorant Points">Get Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="coupons" class="py-20">
-    <div class="container mx-auto px-4 content">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 fade-in">Exclusive Coupons</h2>
-      <p class="text-center mb-4">Available Coupons: 25% Off on Noise Products, 20% Off on Razer Accessories, and more. Email <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a> to redeem.</p>
-      <p class="text-center mb-8 text-red-500 font-semibold"><strong>No Refund Policy:</strong> All coupon purchases are final and non-refundable.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">25% Off on Noise Products</h3>
-          <p class="mb-4">Save big on premium audio gear.</p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Redeem 25% Off on Noise Products">Get Now</a>
-        </div>
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">20% Off on Razer Accessories</h3>
-          <p class="mb-4">Upgrade your gaming setup.</p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Redeem 20% Off on Razer Accessories">Get Now</a>
-        </div>
-        <div class="card-bg p-6 rounded-xl custom-shadow text-center hover-scale fade-in" role="article">
-          <h3 class="text-xl md:text-2xl font-bold mb-2">15% Off on Logitech G Series</h3>
-          <p class="mb-4">High-performance gaming gear.</p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Redeem 15% Off on Logitech G Series">Get Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="py-20">
-    <div class="container mx-auto px-4 content">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 fade-in">Get in Touch</h2>
-      <p class="text-lg mb-8 text-center">Reach out for support or inquiries!</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="fade-in">
-          <i class="fas fa-envelope text-green-400 text-3xl mb-4"></i>
-          <p class="mb-4"><a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a></p>
-          <a href="mailto:giftlyindia35@gmail.com" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Email Giftly India">Email Us</a>
-        </div>
-        <div class="fade-in">
-          <i class="fab fa-telegram text-green-400 text-3xl mb-4"></i>
-          <p class="mb-4"><a href="https://t.me/GiftlyIndia" class="hover:underline">t.me/GiftlyIndia</a></p>
-          <a href="https://t.me/GiftlyIndia" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Join Giftly India on Telegram">Join Telegram</a>
-        </div>
-        <div class="fade-in">
-          <i class="fab fa-instagram text-green-400 text-3xl mb-4"></i>
-          <p class="mb-4"><a href="https://www.instagram.com/klaassyedits?igsh=MTJxbmxwMWpnZnBiMA==" class="hover:underline">@klaassyedits</a></p>
-          <a href="https://www.instagram.com/klaassyedits?igsh=MTJxbmxwMWpnZnBiMA==" class="btn-glow text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Follow Giftly India on Instagram">Follow on Instagram</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="gradient-bg py-8">
-    <div class="container mx-auto text-center content">
-      <p>© 2025 Giftly India. All rights reserved. | <span class="version-glow">Version 1.0</span></p>
-      <div class="flex justify-center space-x-4 mt-4">
-        <a href="#contact" data-nav="contact" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Contact">Contact</a>
-        <a href="#gift-cards" data-nav="gift-cards" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Gift Cards">Gift Cards</a>
-        <a href="#top-ups" data-nav="top-ups" class="hover:text-yellow-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Top-Ups">Top-Ups</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    window.addEventListener('load', () => {
-      console.log('Page and assets fully loaded. Initializing scripts.');
-
-      // Show disclaimer modal
-      try {
-        const modal = document.getElementById('disclaimerModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        if (modal) {
-          modal.style.display = 'flex';
-          console.log('Disclaimer modal displayed.');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giftly India - Gift Cards, Gaming Top-Ups & Coupons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            box-sizing: border-box;
         }
-        if (closeModalBtn) {
-          closeModalBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            console.log('Disclaimer modal closed.');
-          });
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #000000;
+            color: #FFD700;
+            margin: 0;
+            overflow-x: hidden;
         }
-      } catch (err) {
-        console.error(`Modal initialization failed: ${err.message}`);
-      }
-
-      // Navigation script
-      try {
-        const navLinks = document.querySelectorAll('a[data-nav]');
-        console.log(`Found ${navLinks.length} nav links.`);
-        navLinks.forEach(anchor => {
-          anchor.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = anchor.getAttribute('href');
-            console.log(`Nav link clicked: ${targetId}`);
-            try {
-              const targetElement = document.querySelector(targetId);
-              if (targetElement) {
-                const headerHeight = document.querySelector('header').offsetHeight || 150;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerHeight;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                });
-                console.log(`Scrolling to ${targetId} at position ${offsetPosition}`);
-                targetElement.classList.add('debug-highlight');
-                setTimeout(() => targetElement.classList.remove('debug-highlight'), 2000);
-              } else {
-                console.error(`Target element ${targetId} not found in DOM`);
-              }
-            } catch (err) {
-              console.error(`Error scrolling to ${targetId}: ${err.message}`);
+        .subtle-glow {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        .card-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.7);
+            border: 2px solid #FFD700;
+        }
+        .animate-slide-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 0.6s ease-out forwards;
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-          });
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+        }
+        .animate-sparkle {
+            position: relative;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+        }
+        .animate-sparkle::after {
+            content: '✨';
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            font-size: 0.75rem;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .bg-gradient-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-gradient-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 10%, transparent 70%);
+            animation: particleFloat 10s ease-in-out infinite;
+        }
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(-20px); opacity: 0.8; }
+        }
+        .btn-gold {
+            background: linear-gradient(to right, #FFD700, #DAA520);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(to right, #DAA520, #FFD700);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+        }
+        .btn-gold:active {
+            transform: scale(0.95);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInModal 0.3s ease-out forwards;
+        }
+        @keyframes fadeInModal {
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: #1a1a1a;
+            border-radius: 1rem;
+            border: 2px solid #FFD700;
+            max-width: 90%;
+            width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.7);
+            animation: modalPop 0.3s ease-out forwards;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        @keyframes modalPop {
+            to { transform: scale(1); }
+        }
+        .close-btn:hover {
+            color: #FF4500;
+        }
+        .carousel-item {
+            display: none;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .section-container {
+            min-height: 300px;
+            overflow: visible;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+        .card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #FFD700;
+            border-radius: 0.5rem;
+            width: 100%;
+            min-height: 200px;
+            overflow: hidden;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        .terms-container {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 2px solid #FFD700;
+            border-radius: 1rem;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            padding: 1.5rem;
+        }
+        input {
+            background: #2a2a2a;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            max-width: 300px;
+            font-size: 1rem;
+            margin: 0 auto;
+        }
+        input:focus {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        .nav-menu a {
+            position: relative;
+            padding-bottom: 0.25rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.25rem;
+        }
+        .nav-menu a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #FFD700;
+            transform: scaleX(1);
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #FFD700;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .profile-dropdown {
+            position: relative;
+        }
+        .profile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #1a1a1a;
+            border: 2px solid #FFD700;
+            border-radius: 0.5rem;
+            min-width: 150px;
+            z-index: 20;
+        }
+        .profile-menu.active {
+            display: block;
+        }
+        .profile-menu a, .profile-menu span {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #FFD700;
+            text-align: left;
+            transition: background 0.3s ease;
+        }
+        .profile-menu a:hover, .profile-menu span:hover {
+            background: #2a2a2a;
+        }
+        .users-table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .users-table th, .users-table td {
+            border: 1px solid #FFD700;
+            padding: 0.75rem;
+            text-align: left;
+            font-size: 0.9375rem;
+        }
+        .users-table th {
+            background: #2a2a2a;
+            font-weight: bold;
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            .text-5xl { font-size: 2.25rem; }
+            .text-4xl { font-size: 1.875rem; }
+            .text-3xl { font-size: 1.5rem; }
+            .text-2xl { font-size: 1.25rem; }
+            .text-lg { font-size: 1rem; }
+            .text-base { font-size: 0.875rem; }
+            .btn-gold {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+                border-radius: 0.5rem;
+            }
+            .card { padding: 1rem; min-height: 200px; }
+            .modal-content { padding: 1rem; max-width: 90%; }
+            .close-btn { font-size: 1.875rem; }
+            .section-container { min-height: 250px; }
+            .grid { gap: 1rem; }
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 1.5rem;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #000000;
+                padding: 1rem;
+                z-index: 10;
+            }
+            .nav-menu.active { display: flex; }
+            .profile-menu { position: static; width: 100%; }
+            .users-table { font-size: 0.75rem; max-width: 100%; }
+            .users-table th, .users-table td { padding: 0.5rem; }
+        }
+        @media (min-width: 641px) {
+            .hamburger { display: none; }
+            .nav-menu { display: flex; gap: 2rem; }
+            .modal-content { padding: 1.5rem; }
+            .terms-container { padding: 1.5rem; }
+            .nav-menu a { font-size: 1.25rem; }
+        }
+        button:focus, a:focus, input:focus {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-black text-gold py-4 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold subtle-glow">Giftly India</h1>
+            <div class="hamburger md:hidden">☰</div>
+            <nav class="nav-menu space-x-4 md:flex md:items-center hidden">
+                <a href="#home" class="hover:text-white transition">Home</a>
+                <a href="#gift-cards" class="hover:text-white transition">Gift Cards</a>
+                <a href="#gaming" class="hover:text-white transition">Gaming Top-Up</a>
+                <a href="#coupons" class="hover:text-white transition">Coupons</a>
+                <a href="#offers" class="hover:text-white transition">Summer Sale</a>
+                <a href="#terms" class="hover:text-white transition">Terms & Conditions</a>
+                <div class="profile-dropdown">
+                    <span id="auth-link" class="cursor-pointer text-lg hover:text-white transition" onclick="toggleProfileMenu()">Login/Register</span>
+                    <div id="profile-menu" class="profile-menu">
+                        <span id="profile-username" class="text-base"></span>
+                        <a href="#" id="admin-users-link" class="hidden" onclick="showUsersList()">View Users</a>
+                        <a href="#" onclick="logout()" class="underline">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="py-12 md:py-16 text-center bg-gradient-hero">
+        <div class="container mx-auto px-4">
+            <div class="carousel">
+                <div class="carousel-item active animate-slide-in">
+                    <h2 class="text-3xl md:text-5xl font-bold subtle-glow mb-4">Giftly India: Your Gifting Hub</h2>
+                    <p class="text-base md:text-xl mb-6 max-w-2xl mx-auto leading-6">Grab premium Gift Cards, Gaming Top-Ups, and Coupons now!</p>
+                    <button onclick="checkLogin('gift-cards')" class="btn-gold text-black px-5 py-3 rounded-lg font-bold text-base md:text-lg" aria-label="Start shopping for gift cards">Shop Now</button>
+                </div>
+                <div class="carousel-item animate-slide-in">
+                    <h2 class="text-3xl md:text-5xl font-bold subtle-glow mb-4">Summer Sale Extravaganza</h2>
+                    <p class="text-base md:text-xl mb-6 max-w-2xl mx-auto leading-6">Up to 50% off on all products!</p>
+                    <button onclick="checkLogin('offers')" class="btn-gold text-black px-5 py-3 rounded-lg font-bold text-base md:text-lg" aria-label="Explore summer sale offers">Explore Offers</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summer Sale Section -->
+    <section id="offers" class="py-12 md:py-16 section-container">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold subtle-glow mb-8 text-center animate-slide-in">Sizzling Summer Sale!</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.1s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Gift Cards</h3>
+                    <p class="animate-sparkle">Price: <strike>₹250</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">Up to 50% OFF on all gift cards!</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded once purchased!</p>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Gaming Top-Ups</h3>
+                    <p class="animate-sparkle">Price: <strike>₹300</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">50% OFF on gaming top-ups!</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.3s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Coupons</h3>
+                    <p class="animate-sparkle">Price: <strike>₹250</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">Up to 50% OFF on exclusive coupons!</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Cards Section -->
+    <section id="gift-cards" class="py-12 md:py-16 section-container">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold subtle-glow mb-8 text-center animate-slide-in">Gift Cards</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.1s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Amazon Gift Card</h3>
+                    <p class="animate-sparkle">Price: <strike>₹300</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">Shop anything on Amazon.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded once purchased!</p>
+                    <button onclick="checkLoginForModal('amazon-gift-card')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Amazon Gift Card details">Quick View</button>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Myntra Gift Card</h3>
+                    <p class="animate-sparkle">Price: <strike>₹400</strike> ₹200</p>
+                    <p class="text-base md:text-lg leading-6">Latest fashion trends.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('myntra-gift-card')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Myntra Gift Card details">Quick View</button>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.3s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Google Play Card</h3>
+                    <p class="animate-sparkle">Price: <strike>₹200</strike> ₹100</p>
+                    <p class="text-base md:text-lg leading-6">Apps, games, and more.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('google-play')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Google Play Card details">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gaming Top-Ups Section -->
+    <section id="gaming" class="py-12 md:py-16 section-container">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold subtle-glow mb-8 text-center animate-slide-in">Gaming Top-Ups</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.1s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Free Fire Max Top-Up</h3>
+                    <p class="animate-sparkle">Price: <strike>₹300</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">Diamonds for in-game items.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('free-fire-modal')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Free Fire Max Top-Up details">Buy Now</button>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">BGMI Top-Up</h3>
+                    <p class="animate-sparkle">Price: <strike>₹300</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">UC for skins and passes.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('bgmi-top-up')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View BGMI Top-Up details">Buy Now</button>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.3s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Call of Duty Top-Up</h3>
+                    <p class="animate-sparkle">Price: <strike>₹300</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">CP for weapons and skins.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('cod-top-up')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Call of Duty Top-Up details">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coupons Section -->
+    <section id="coupons" class="py-12 md:py-16 section-container">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold subtle-glow mb-8 text-center animate-slide-in">Coupons</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.1s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Zomato Coupon</h3>
+                    <p class="animate-sparkle">Price: <strike>₹300</strike> ₹150</p>
+                    <p class="text-base md:text-lg leading-6">Up to 50% off dining.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('zomato-coupon')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Zomato Coupon details">Buy Now</button>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Swiggy Coupon</h3>
+                    <p class="animate-sparkle">Price: <strike>₹400</strike> ₹200</p>
+                    <p class="text-base md:text-lg leading-6">Food delivery discounts.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('swiggy-coupon')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View Swiggy Coupon details">Buy Now</button>
+                </div>
+                <div class="card card-hover animate-pulse-glow animate-slide-in" style="animation-delay: 0.3s;">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">BigBasket Coupon</h3>
+                    <p class="animate-sparkle">Price: <strike>₹400</strike> ₹200</p>
+                    <p class="text-base md:text-lg leading-6">Grocery savings.</p>
+                    <p class="text-sm text-red-500 mb-2">Non-refunded!</p>
+                    <button onclick="checkLoginForModal('bigbasket-coupon')" class="btn-gold text-black px-4 py-2 rounded-lg font-bold text-base" aria-label="View BigBasket Coupon details">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Section -->
+    <section id="terms" class="py-12 md:py-16 section-container">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold subtle-glow mb-8 text-center animate-slide-in">Terms & Conditions</h2>
+            <div class="terms-container text-left max-w-3xl mx-auto">
+                <p class="text-base md:text-lg leading-6 mb-4 animate-slide-in" style="animation-delay: 0.1s;">
+                    Purchasing gift cards, gaming top-ups, or coupons via cash? Here's what you need to know!
+                </p>
+                <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6 animate-slide-in" style="animation-delay: 0.2s;">
+                    <li>
+                        <strong>Commission Fees for Cash Payments:</strong> A commission fee applies to all gift cards, gaming top-ups, and coupons purchased via cash, based on the purchase amount:
+                        <ul class="list-disc ml-6 mt-2 mb-2 text-base leading-6">
+                            <li>Up to <span class="font-bold text-[#FFD700">₹1000</span>, a commission of <span class="font-bold text-[#FFD700">₹100</span> will be charged.</li>
+                            <li>Up to <span class="font-bold text-[#FFD700">₹2000</span>, a commission of <span class="font-bold text-[#FFD700">₹200</span> will be charged.</li>
+                            <li>Up to <span class="font-bold text-[#FFD700">₹3000</span>, a commission of <span class="font-bold text-[#FFD700">₹300</span> will be charged.</li>
+                            <li>Up to <span class="font-bold text-[#FFD700">₹4000</span>, a commission of <span class="font-bold text-[#FFD700">₹400</span> will be charged.</li>
+                            <li>Above <span class="font-bold text-[#FFD700">₹4000</span>, a commission of <span class="font-bold text-[#FFD700">₹500</span> will be charged.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-16 section-container">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold subtle-glow mb-8 animate-slide-in">Connect With Us!</h2>
+            <p class="text-base md:text-lg leading-6 mb-4 animate-slide-in" style="animation-delay: 0.1s">Email: <a href="mailto:giftlyindia35@gmail.com" class="hover:underline">giftlyindia35@gmail.com</a></p>
+            <p class="text-base md:text-lg leading-6 mb-4 animate-slide-in" style="animation-delay: 0.2s">Telegram: <a href="https://t.me/GiftlyIndia" target="_blank" class="hover:underline">t.me/GiftlyIndia</a></p>
+            <p class="text-base md:text-lg leading-6 mb-4 animate-slide-in" style="animation-delay: 0.3s">Instagram: <a href="https://instagram.com/Klaassyedits" class="hover:underline" target="_blank">@Klaassyedits</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gold py-6 text-center">
+        <p class="text-base md:text-lg animate-slide-in">© 2025 Giftly India. All rights reserved.</p>
+    </footer>
+
+    <!-- Modals -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content flex flex-col items-center space-y-4">
+            <span class="close-btn text-3xl md:text-2xl self-end cursor-pointer" onclick="closeModal('login-modal')" aria-label="Close login modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold text-center animate-slide-in">Login</h3>
+            <p id="login-prompt" class="text-red-500 text-sm text-center animate-slide-in"></p>
+            <div class="flex flex-col items-center w-full max-w-[300px] animate-slide-in">
+                <label for="login-username" class="block text-base mb-2">Username</label>
+                <input type="text" id="login-username" class="text-base w-full" placeholder="Enter username" aria-label="Username" required>
+                <p id="login-username-error" class="text-red-500 text-sm mt-1 text-center hidden"></p>
+            </div>
+            <div class="flex flex-col items-center w-full max-w-[300px] animate-slide-in">
+                <label for="login-password" class="block text-base mb-2">Password</label>
+                <input type="password" id="login-password" class="text-base w-full" placeholder="Enter password" aria-label="Password" required>
+                <p id="login-password-error" class="text-red-500 text-sm mt-1 text-center hidden"></p>
+            </div>
+            <button onclick="handleLogin()" class="btn-gold text-black w-full max-w-[300px] py-3 rounded-lg font-bold text-base animate-slide-in" aria-label="Submit login">Login</button>
+            <p class="text-base text-center animate-slide-in">Don’t have an account? <a href="#" onclick="switchToRegister()" class="underline">Register here</a></p>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content flex flex-col items-center space-y-4">
+            <span class="close-btn text-3xl md:text-2xl self-end cursor-pointer" onclick="closeModal('register-modal')" aria-label="Close register modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold text-center animate-slide-in">Register</h3>
+            <div class="flex flex-col items-center w-full max-w-[300px] animate-slide-in">
+                <label for="register-email" class="block text-base mb-2">Email</label>
+                <input type="email" id="register-email" class="text-base w-full" placeholder="Enter email" aria-label="Email" required>
+                <p id="register-email-error" class="text-red-500 text-sm mt-1 text-center hidden"></p>
+            </div>
+            <div class="flex flex-col items-center w-full max-w-[300px] animate-slide-in">
+                <label for="register-username" class="block text-base mb-2">Username</label>
+                <input type="text" id="register-username" class="text-base w-full" placeholder="Enter username" aria-label="Username" required>
+                <p id="register-username-error" class="text-red-500 text-sm mt-1 text-center hidden"></p>
+            </div>
+            <div class="flex flex-col items-center w-full max-w-[300px] animate-slide-in">
+                <label for="register-password" class="block text-base mb-2">Password</label>
+                <input type="password" id="register-password" class="text-base w-full" placeholder="Enter password" aria-label="Password" required>
+                <p id="register-password-error" class="text-red-500 text-sm mt-1 text-center hidden"></p>
+            </div>
+            <div class="flex flex-col items-center w-full max-w-[300px] animate-slide-in">
+                <label for="register-confirm-password" class="block text-base mb-2">Confirm Password</label>
+                <input type="password" id="register-confirm-password" class="text-base w-full" placeholder="Confirm password" aria-label="Confirm Password" required>
+                <p id="register-confirm-password-error" class="text-red-500 text-sm mt-1 text-center hidden"></p>
+            </div>
+            <button onclick="handleRegister()" class="btn-gold text-black w-full max-w-[300px] py-3 rounded-lg font-bold text-base animate-slide-in" aria-label="Submit registration">Register</button>
+            <p class="text-base text-center animate-slide-in">Already have an account? <a href="#" onclick="switchToLogin()" class="underline">Login here</a></p>
+        </div>
+    </div>
+
+    <div id="users-list-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn text-3xl md:text-2xl float-right cursor-pointer" onclick="closeModal('users-list-modal')" aria-label="Close users list modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-center animate-slide-in">Registered Users</h3>
+            <table id="users-table" class="users-table animate-slide-in">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="amazon-gift-card" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('amazon-gift-card')" aria-label="Close Amazon Gift Card modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Amazon Gift Card</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹300</strike> ₹150</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Use on Amazon.in for electronics, fashion, books, and more.</p>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Amazon Gift Card" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the gift card code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Visit Amazon.in and add items to your cart.</li>
+                <li>Proceed to checkout and select "Gift Cards & Promotional Codes."</li>
+                <li>Enter the code received from Giftly India.</li>
+                <li>Apply to see the balance deducted.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Amazon Gift Card via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="myntra-gift-card" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('myntra-gift-card')" aria-label="Close Myntra Gift Card modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Myntra Gift Card</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹400</strike> ₹200</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Shop the latest fashion trends on Myntra.</p>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Myntra Gift Card" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the gift card code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Go to Myntra.com or the Myntra app.</li>
+                <li>Add items to your cart and proceed to checkout.</li>
+                <li>Enter the gift card code in the "Gift Card" section.</li>
+                <li>Apply to reduce your payment amount.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Myntra Gift Card via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="google-play" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('google-play')" aria-label="Close Google Play modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Google Play Gift Card</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹200</strike> ₹100</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Use for apps, games, and in-app purchases on Google Play.</p>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Google Play Gift Card" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the gift card code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Open the Google Play Store app.</li>
+                <li>Tap the profile icon and select "Payments & subscriptions."</li>
+                <li>Choose "Redeem gift code" and enter the code from Giftly India.</li>
+                <li>Confirm to add the balance to your account.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Google Play Gift Card via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="free-fire-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('free-fire-modal')" aria-label="Close Free Fire Max Top-Up modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Free Fire Max Top-Up</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹300</strike> ₹150</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Get Diamonds for skins, characters, and more in Free Fire Max.</p>
+            <p class="text-base md:text-lg leading-6"><strong>In-Game Purchases:</strong></p>
+            <ul class="list-disc ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Diamonds for character skins</li>
+                <li>Weapon skins and bundles</li>
+                <li>Elite Pass and event items</li>
+            </ul>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Free Fire Max Top-Up" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the Google Play Gift Card code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Open the Google Play Store app.</li>
+                <li>Tap the profile icon and select "Payments & subscriptions."</li>
+                <li>Choose "Redeem gift code" and enter the Google Play Gift Card code.</li>
+                <li>Confirm to add the balance to your account.</li>
+                <li>In Free Fire Max, use the Google Play balance to purchase Diamonds in the in-game store.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Free Fire Max via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="bgmi-top-up" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('bgmi-top-up')" aria-label="Close BGMI Top-Up modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">BGMI Top-Up</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹300</strike> ₹150</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Get UC for skins, Royale Pass, and more in BGMI.</p>
+            <p class="text-base md:text-lg leading-6"><strong>In-Game Purchases:</strong></p>
+            <ul class="list-disc ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>UC for Royale Pass</li>
+                <li>Character and weapon skins</li>
+                <li>Outfits and emotes</li>
+            </ul>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "BGMI Top-Up" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the Google Play Gift Card code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Open the Google Play Store app.</li>
+                <li>Tap the profile icon and select "Payments & subscriptions."</li>
+                <li>Choose "Redeem gift code" and enter the code from Giftly India.</li>
+                <li>Confirm to add the balance to your account.</li>
+                <li>In BGMI, use the Google Play balance to purchase UC in the in-game shop.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase BGMI Top-Up via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="cod-top-up" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('cod-top-up')" aria-label="Close Call of Duty Top-Up modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Call of Duty Mobile Top-Up</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹300</strike> ₹150</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Get CP for weapons, skins, and Battle Pass in Call of Duty Mobile.</p>
+            <p class="text-base md:text-lg leading-6"><strong>In-Game Purchases:</strong></p>
+            <ul class="list-disc ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>CP for Battle Pass</li>
+                <li>Weapon skins and operators</li>
+                <li>Lucky Draw items</li>
+            </ul>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Call of Duty Mobile Top-Up" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the Google Play Gift Card code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Open the Google Play Store app.</li>
+                <li>Tap the profile icon and select "Payments & subscriptions."</li>
+                <li>Choose "Redeem gift code" and enter the code from Giftly India.</li>
+                <li>Confirm to add the balance to your account.</li>
+                <li>In Call of Duty Mobile, use the Google Play balance to purchase CP in the in-game shop.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Call of Duty Mobile Top-Up via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="zomato-coupon" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('zomato-coupon')" aria-label="Close Zomato Coupon modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Zomato Coupon</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹300</strike> ₹150</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Up to 50% off on dining and delivery.</p>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Zomato Coupon" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the coupon code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Open the Zomato app or website.</li>
+                <li>Add items to your cart and proceed to checkout.</li>
+                <li>Enter the coupon code in the "Apply Coupon" section.</li>
+                <li>Apply to see the discount reflected.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Zomato Coupon via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="swiggy-coupon" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('swiggy-coupon')" aria-label="Close Swiggy Coupon modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Swiggy Coupon</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹400</strike> ₹200</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Discounts on food delivery.</p>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "Swiggy Coupon" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the coupon code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Open the Swiggy app or website.</li>
+                <li>Add items to your cart and go to checkout.</li>
+                <li>Enter the coupon code in the "Apply Coupon" field.</li>
+                <li>Apply to reduce your order total.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase Swiggy Coupon via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <div id="bigbasket-coupon" class="modal">
+        <div class="modal-content">
+            <span class="close-btn cursor-pointer text-3xl md:text-2xl float-right" onclick="closeModal('bigbasket-coupon')" aria-label="Close BigBasket Coupon modal">×</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">BigBasket Coupon</h3>
+            <p class="text-base md:text-lg leading-6"><strong>Price: </strong><span class="animate-sparkle"><strike>₹400</strike> ₹200</span></p>
+            <p class="text-base md:text-lg leading-6"><strong>Details:</strong> Save on grocery shopping.</p>
+            <p class="text-base md:text-lg leading-6"><strong>How to Purchase:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>DM us on Telegram (<a href="https://t.me/GiftlyIndia" class="underline" target="_blank">t.me/GiftlyIndia</a>) or email us at <a href="mailto:giftlyindia35@gmail.com" class="underline">giftlyindia35@gmail.com</a> to purchase.</li>
+                <li>Specify "BigBasket Coupon" and your preferred amount.</li>
+                <li>Complete payment via provided methods.</li>
+                <li>Receive the coupon code instantly.</li>
+            </ol>
+            <p class="text-base md:text-lg leading-6"><strong>How to Redeem:</strong></p>
+            <ol class="list-decimal ml-6 mb-4 text-base md:text-lg leading-6">
+                <li>Visit BigBasket.com or the app.</li>
+                <li>Add groceries to your cart and proceed to checkout.</li>
+                <li>Enter the coupon code in the "Apply Coupon" section.</li>
+                <li>Apply to see the discount applied.</li>
+            </ol>
+            <a href="https://t.me/GiftlyIndia" target="_blank" class="mt-4 inline-block btn-gold text-black px-5 py-3 rounded-lg font-bold text-base" aria-label="Purchase BigBasket Coupon via Telegram">DM to Buy</a>
+        </div>
+    </div>
+
+    <script>
+        let isLoggedIn = false;
+        let currentUser = null;
+        let isAdmin = false;
+        let pendingModalId = null;
+        let pendingSectionId = null;
+
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.style.visibility = 'visible';
+            }
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.style.display = 'none';
+                if (id === 'login-modal') {
+                    document.getElementById('login-prompt').textContent = '';
+                    clearLoginErrors();
+                } else if (id === 'register-modal') {
+                    clearRegistrationErrors();
+                }
+            }
+        }
+
+        function openLoginModal(message = '') {
+            openModal('login-modal');
+            if (message) {
+                document.getElementById('login-prompt').textContent = message;
+            }
+        }
+
+        function switchToRegister() {
+            closeModal('login-modal');
+            openModal('register-modal');
+        }
+
+        function switchToLogin() {
+            closeModal('register-modal');
+            openModal('login-modal');
+        }
+
+        function clearLoginErrors() {
+            document.getElementById('login-username-error').textContent = '';
+            document.getElementById('login-username-error').classList.add('hidden');
+            document.getElementById('login-password-error').textContent = '';
+            document.getElementById('login-password-error').classList.add('hidden');
+        }
+
+        function clearRegistrationErrors() {
+            document.getElementById('register-email-error').textContent = '';
+            document.getElementById('register-email-error').classList.add('hidden');
+            document.getElementById('register-username-error').textContent = '';
+            document.getElementById('register-username-error').classList.add('hidden');
+            document.getElementById('register-password-error').textContent = '';
+            document.getElementById('register-password-error').classList.add('hidden');
+            document.getElementById('register-confirm-password-error').textContent = '';
+            document.getElementById('register-confirm-password-error').classList.add('hidden');
+        }
+
+        function checkLogin(sectionId) {
+            if (!isLoggedIn) {
+                pendingSectionId = sectionId;
+                openLoginModal('Please login or register to shop.');
+            } else {
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function checkLoginForModal(modalId) {
+            if (!isLoggedIn) {
+                pendingModalId = modalId;
+                openLoginModal('Please login or register to view details.');
+            } else {
+                openModal(modalId);
+            }
+        }
+
+        function showUsersList() {
+            if (!isAdmin) {
+                alert('Access restricted to admin only.');
+                return;
+            }
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const tableBody = document.getElementById('users-table-body');
+            tableBody.innerHTML = '';
+            const sortedUsers = Object.keys(users).sort((a, b) => a.localeCompare(b));
+            sortedUsers.forEach(username => {
+                if (username !== 'GIFTLYINDIA35') {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${username}</td>
+                        <td>${users[username].email}</td>
+                    `;
+                    tableBody.appendChild(row);
+                }
+            });
+            openModal('users-list-modal');
+        }
+
+        function handleLogin() {
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value;
+            clearLoginErrors();
+            let hasError = false;
+            if (!username) {
+                document.getElementById('login-username-error').textContent = 'Username is required';
+                document.getElementById('login-username-error').classList.remove('hidden');
+                hasError = true;
+            }
+            if (!password) {
+                document.getElementById('login-password-error').textContent = 'Password is required';
+                document.getElementById('login-password-error').classList.remove('hidden');
+                hasError = true;
+            }
+            if (hasError) return;
+            if (username === 'GIFTLYINDIA35' && password === 'Football@2050') {
+                isLoggedIn = true;
+                isAdmin = true;
+                currentUser = username;
+                updateAuthLink();
+                closeModal('login-modal');
+                if (pendingModalId) {
+                    openModal(pendingModalId);
+                    pendingModalId = null;
+                } else if (pendingSectionId) {
+                    document.getElementById(pendingSectionId).scrollIntoView({ behavior: 'smooth' });
+                    pendingSectionId = null;
+                }
+                return;
+            }
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const hashedPassword = btoa(password);
+            if (users[username] && users[username].password === hashedPassword) {
+                isLoggedIn = true;
+                isAdmin = false;
+                currentUser = username;
+                updateAuthLink();
+                closeModal('login-modal');
+                if (pendingModalId) {
+                    openModal(pendingModalId);
+                    pendingModalId = null;
+                } else if (pendingSectionId) {
+                    document.getElementById(pendingSectionId).scrollIntoView({ behavior: 'smooth' });
+                    pendingSectionId = null;
+                }
+            } else {
+                document.getElementById('login-password-error').textContent = 'Invalid username or password';
+                document.getElementById('login-password-error').classList.remove('hidden');
+            }
+        }
+
+        function handleRegister() {
+            const email = document.getElementById('register-email').value.trim();
+            const username = document.getElementById('register-username').value.trim();
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            clearRegistrationErrors();
+            let hasError = false;
+            if (!email) {
+                document.getElementById('register-email-error').textContent = 'Email is required';
+                document.getElementById('register-email-error').classList.remove('hidden');
+                hasError = true;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('register-email-error').textContent = 'Invalid email format';
+                document.getElementById('register-email-error').classList.remove('hidden');
+                hasError = true;
+            }
+            if (!username) {
+                document.getElementById('register-username-error').textContent = 'Username is required';
+                document.getElementById('register-username-error').classList.remove('hidden');
+                hasError = true;
+            }
+            if (!password) {
+                document.getElementById('register-password-error').textContent = 'Password is required';
+                document.getElementById('register-password-error').classList.remove('hidden');
+                hasError = true;
+            }
+            if (!confirmPassword) {
+                document.getElementById('register-confirm-password-error').textContent = 'Confirm password is required';
+                document.getElementById('register-confirm-password-error').classList.remove('hidden');
+                hasError = true;
+            } else if (password !== confirmPassword) {
+                document.getElementById('register-confirm-password-error').textContent = 'Passwords do not match';
+                document.getElementById('register-confirm-password-error').classList.remove('hidden');
+                hasError = true;
+            }
+            if (hasError) return;
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (users[username]) {
+                document.getElementById('register-username-error').textContent = 'Username already exists';
+                document.getElementById('register-username-error').classList.remove('hidden');
+                return;
+            }
+            users[username] = {
+                email,
+                password: btoa(password),
+            };
+            localStorage.setItem('users', JSON.stringify(users));
+            isLoggedIn = true;
+            isAdmin = false;
+            currentUser = username;
+            updateAuthLink();
+            closeModal('register-modal');
+            if (pendingModalId) {
+                openModal(pendingModalId);
+                pendingModalId = null;
+            } else if (pendingSectionId) {
+                document.getElementById(pendingSectionId).scrollIntoView({ behavior: 'smooth' });
+                pendingSectionId = null;
+            }
+        }
+
+        function logout() {
+            isLoggedIn = false;
+            isAdmin = false;
+            currentUser = null;
+            document.getElementById('profile-menu').classList.remove('active');
+            updateAuthLink();
+            alert('You have been logged out successfully.');
+        }
+
+        function toggleProfileMenu() {
+            if (isLoggedIn) {
+                document.getElementById('profile-menu').classList.toggle('active');
+            } else {
+                openLoginModal();
+            }
+        }
+
+        function updateAuthLink() {
+            const authLink = document.getElementById('auth-link');
+            const profileUsername = document.getElementById('profile-username');
+            const adminUsersLink = document.getElementById('admin-users-link');
+            if (isLoggedIn && currentUser) {
+                authLink.textContent = `Hi, ${currentUser}`;
+                profileUsername.textContent = `Welcome, ${currentUser}`;
+                adminUsersLink.classList.toggle('hidden', !isAdmin);
+            } else {
+                authLink.textContent = 'Login/Register';
+                profileUsername.textContent = '';
+                adminUsersLink.classList.add('hidden');
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                if (window.innerWidth <= 640) {
+                    document.querySelector('.nav-menu').classList.remove('active');
+                }
+            });
         });
-      } catch (err) {
-        console.error(`Nav initialization failed: ${err.message}`);
-      }
-    });
-  </script>
+
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const profileMenu = document.getElementById('profile-menu');
+            const authLink = document.getElementById('auth-link');
+            if (!profileMenu.contains(e.target) && !authLink.contains(e.target)) {
+                profileMenu.classList.remove('active');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-in');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-slide-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        let currentItem = 0;
+
+        function showNextItem() {
+            carouselItems[currentItem].classList.remove('active');
+            currentItem = (currentItem + 1) % carouselItems.length;
+            carouselItems[currentItem].classList.add('active');
+        }
+
+        setInterval(showNextItem, 5000);
+    </script>
 </body>
 </html>
